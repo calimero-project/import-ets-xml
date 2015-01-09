@@ -7,8 +7,8 @@ Copyright (C) 2010, 2011 Thomas Wimmer<br>
 Documentation by Wolfgang Granzer, Boris Malinowsky<br>
 Licensed under the GNU Lesser General Public License (LGPL), version 2.1
 
-Version: 1.2<br>
-Date:    01.08.2011<br>
+Version: 1.3<br>
+Date:    09.01.2015<br>
 Tested with ETS 4.0.3
 
 1. Export ETS4 project:
