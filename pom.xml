@@ -79,6 +79,43 @@
 					</dependency>
 				</dependencies>
 			</plugin>
+			<plugin>
+				<groupId>com.soebes.maven.plugins</groupId>
+				<artifactId>iterator-maven-plugin</artifactId>
+				<version>0.3</version>
+				<executions>
+					<execution>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>iterator</goal>
+						</goals>
+						<configuration>
+							<folder>src/main/resources/</folder>
+							<pluginExecutors>
+								<pluginExecutor>
+									<plugin>
+										<groupId>org.codehaus.mojo</groupId>
+										<artifactId>xml-maven-plugin</artifactId>
+										<version>1.0</version>
+									</plugin>
+									<goal>transform</goal>
+									<configuration>
+										<transformationSets>
+											<transformationSet>
+												<dir>src/main/resources/@item@</dir>
+												<includes>
+													<include>P*/0.xml</include>
+												</includes>
+												<stylesheet>src/main/resources/@item@/ets4_calimero_group_name.xsl</stylesheet>
+											</transformationSet>
+										</transformationSets>
+									</configuration>
+								</pluginExecutor>
+							</pluginExecutors>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 </project>
