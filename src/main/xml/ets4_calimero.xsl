@@ -4,14 +4,14 @@
 <xsl:for-each select="b:KNX/b:Project/b:Installations/b:Installation/b:Topology">
 <datapoints>
 <xsl:for-each select="b:Area/b:Line/b:DeviceInstance/b:ComObjectInstanceRefs/b:ComObjectInstanceRef/b:Connectors">
-<xsl:variable name="verz" select="document(concat(substring(../@RefId,0,7),'/',substring-before(../@RefId, '_O'), '.xml'))/b:KNX/b:ManufacturerData/b:Manufacturer/b:ApplicationPrograms/b:ApplicationProgram/b:Static/b:ComObjectTable/b:ComObject[@Id = ../../b:ComObjectRefs/b:ComObjectRef[@Id = current()/../@RefId]/@RefId]" /> 
-<xsl:variable name="grosse"> 
+<xsl:variable name="verz" select="document(concat(substring(../@RefId,0,7),'/',substring-before(../@RefId, '_O'), '.xml'))/b:KNX/b:ManufacturerData/b:Manufacturer/b:ApplicationPrograms/b:ApplicationProgram/b:Static/b:ComObjectTable/b:ComObject[@Id = ../../b:ComObjectRefs/b:ComObjectRef[@Id = current()/../@RefId]/@RefId]" />
+<xsl:variable name="grosse">
   <xsl:choose>
     <xsl:when test="substring-after($verz/@ObjectSize,' ') = 'Bytes'">
-	<xsl:value-of select="substring-before($verz/@ObjectSize,' ')*8" /> 
+	<xsl:value-of select="substring-before($verz/@ObjectSize,' ')*8" />
     </xsl:when>
     <xsl:otherwise>
-	<xsl:value-of select="substring-before($verz/@ObjectSize,' ')" /> 
+	<xsl:value-of select="substring-before($verz/@ObjectSize,' ')" />
     </xsl:otherwise>
   </xsl:choose>
 </xsl:variable>
@@ -19,7 +19,7 @@
 <xsl:variable name="master2" select="document('knx_master.xml')/b:KNX/b:MasterData/b:DatapointTypes/b:DatapointType/b:DatapointSubtypes/b:DatapointSubtype[@Id = current()/../@DatapointType]" />
 <xsl:variable name="master3" select="document('knx_master.xml')/b:KNX/b:MasterData/b:DatapointTypes/b:DatapointType[@Id = current()/../@DatapointType]" />
 <xsl:variable name="graddress" select="/b:KNX/b:Project/b:Installations/b:Installation/b:GroupAddresses/b:GroupRanges/b:GroupRange/b:GroupRange" />
-<datapoint>		
+<datapoint>
 	<xsl:attribute name="stateBased">
 		<xsl:value-of select="'true'"/>
 	</xsl:attribute>
