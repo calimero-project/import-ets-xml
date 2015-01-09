@@ -79,11 +79,13 @@
 	<expiration timeout="0"/>
 		<xsl:choose>
 		<xsl:when test="b:Receive">
-			<xsl:for-each select="b:Receive">
-				<updatingAddresses>
-					<xsl:value-of select="$graddress/b:GroupAddress[@Id = current()/@GroupAddressRefId]/@Address"/>
-				</updatingAddresses>
-			</xsl:for-each>
+			<updatingAddresses>
+				<xsl:for-each select="b:Receive">
+					<knxAddress type="group">
+						<xsl:value-of select="$graddress/b:GroupAddress[@Id = current()/@GroupAddressRefId]/@Address"/>
+					</knxAddress>
+				</xsl:for-each>
+			</updatingAddresses>
 		</xsl:when>
 		<xsl:otherwise>
 			<updatingAddresses>
