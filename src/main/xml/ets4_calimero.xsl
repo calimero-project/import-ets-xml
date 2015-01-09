@@ -1,6 +1,6 @@
 <xsl:stylesheet version="1.1" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 <xsl:output method="xml" version="1.0" encoding="iso-8859-1" indent="yes"/>
-<xsl:template match="/"  xmlns:b="http://knx.org/xml/project/10">
+<xsl:template match="/"  xmlns:b="http://knx.org/xml/project/11">
 <xsl:for-each select="b:KNX/b:Project/b:Installations/b:Installation/b:Topology">
 <datapoints>
 <xsl:for-each select="b:Area/b:Line/b:DeviceInstance/b:ComObjectInstanceRefs/b:ComObjectInstanceRef/b:Connectors">
