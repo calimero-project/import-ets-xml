@@ -1,16 +1,14 @@
-import-ets4-xml
-===============
-
 Import ETS4 XML into Calimero XML
+=================================
 
 The contained **.xsl** files transform part of ETS4 source XML documents to Calimero XML source documents.
 
-Copyright (C) 2010, 2011 Thomas Wimmer
-Documentation by Wolfgang Granzer, Boris Malinowsky
+Copyright (C) 2010, 2011 Thomas Wimmer<br>
+Documentation by Wolfgang Granzer, Boris Malinowsky<br>
 Licensed under the GNU Lesser General Public License (LGPL), version 2.1
 
-Version: 1.2
-Date:    01.08.2011
+Version: 1.2<br>
+Date:    01.08.2011<br>
 Tested with ETS 4.0.3
 
 1. Export ETS4 project:
@@ -31,6 +29,6 @@ Under Microsoft Windows, you may use:
 http://saxon.sourceforge.net/
 
 ------------------------------------------------
-Developed at the A-Lab, Automation Systems Group
-Vienna University of Technology
+Developed at the A-Lab, Automation Systems Group<br>
+Vienna University of Technology<br>
 www.auto.tuwien.ac.at/a-lab
