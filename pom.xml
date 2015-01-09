@@ -97,6 +97,13 @@
 										<groupId>org.codehaus.mojo</groupId>
 										<artifactId>xml-maven-plugin</artifactId>
 										<version>1.0</version>
+										<dependencies>
+											<dependency>
+												<groupId>net.sf.saxon</groupId>
+												<artifactId>saxon</artifactId>
+												<version>8.7</version>
+											</dependency>
+										</dependencies>
 									</plugin>
 									<goal>transform</goal>
 									<configuration>
