@@ -92,12 +92,12 @@
 		</xsl:when>
 		<xsl:otherwise>
 			<updatingAddresses>
-				<xsl:text> </xsl:text>
+				<xsl:text></xsl:text>
 			</updatingAddresses>
 		</xsl:otherwise>
 		</xsl:choose>
 	<invalidatingAddresses>
-		<xsl:text> </xsl:text>
+		<xsl:text></xsl:text>
 	</invalidatingAddresses>
 </datapoint>
 </xsl:for-each>
