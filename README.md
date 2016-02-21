@@ -4,7 +4,7 @@ Import ETS4 XML into Calimero XML
 The contained **.xsl** files transform part of ETS4 source XML documents to Calimero XML source documents.
 
 Copyright (C) 2010, 2011 Thomas Wimmer<br>
-Copyright (C) 2015 Boris Malinowsky<br>
+Copyright (C) 2015, 2016 Boris Malinowsky<br>
 Documentation by Wolfgang Granzer, Boris Malinowsky<br>
 Licensed under the GNU Lesser General Public License (LGPL), version 2.1
 
@@ -21,7 +21,8 @@ Using Maven
 
 Manual invocation
 -----------------
-  * Copy the chosen XSL file into the root directory of the extracted ETS4 project. 
+  * Chose the appropriate XSL style sheet (see below).
+  * Copy the chosen XSL file into the root directory of the extracted ETS4 project.
   * Invoke an appropriate XSLT tool. Under Linux/OS X you may use `xsltproc`: `xsltproc -o <output_XML_file> <XSL_file> <source_XML_file>`
 
 Choose the appropriate XSL style sheet:
