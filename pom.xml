@@ -150,8 +150,8 @@
 										<dependencies>
 											<dependency>
 												<groupId>net.sf.saxon</groupId>
-												<artifactId>saxon</artifactId>
-												<version>8.7</version>
+												<artifactId>Saxon-HE</artifactId>
+												<version>9.7.0-13</version>
 											</dependency>
 										</dependencies>
 									</plugin>
