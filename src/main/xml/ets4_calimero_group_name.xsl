@@ -1,6 +1,6 @@
-<xsl:stylesheet version="1.1" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-<xsl:output method="xml" version="1.0" encoding="iso-8859-1" indent="yes"/>
-<xsl:template match="/"  xmlns:b="http://knx.org/xml/project/11">
+<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs">
+<xsl:output method="xml" version="1.0" encoding="utf-8" indent="yes"/>
+<xsl:template match="/" xmlns:b="http://knx.org/xml/project/11">
 <xsl:for-each select="b:KNX/b:Project/b:Installations/b:Installation/b:Topology">
 <datapoints>
 <xsl:for-each select="b:Area/b:Line/b:DeviceInstance/b:ComObjectInstanceRefs/b:ComObjectInstanceRef">
@@ -11,7 +11,7 @@
 <xsl:variable name="grosse">
   <xsl:choose>
     <xsl:when test="substring-after($verz/@ObjectSize,' ') = 'Bytes'">
-	<xsl:value-of select="substring-before($verz/@ObjectSize,' ')*8" />
+	<xsl:value-of select="xs:decimal(substring-before($verz/@ObjectSize,' '))*8" />
     </xsl:when>
     <xsl:otherwise>
 	<xsl:value-of select="substring-before($verz/@ObjectSize,' ')" />
@@ -22,17 +22,18 @@
 <xsl:variable name="master2" select="document('knx_master.xml')/b:KNX/b:MasterData/b:DatapointTypes/b:DatapointType/b:DatapointSubtypes/b:DatapointSubtype[@Id = current()/../@DatapointType]" />
 <xsl:variable name="master3" select="document('knx_master.xml')/b:KNX/b:MasterData/b:DatapointTypes/b:DatapointType[@Id = current()/../@DatapointType]" />
 <xsl:variable name="graddress" select="/b:KNX/b:Project/b:Installations/b:Installation/b:GroupAddresses/b:GroupRanges/b:GroupRange/b:GroupRange" />
+<xsl:variable name="loc" select="/b:KNX/b:Project/b:Installations/b:Installation/b:GroupAddresses/b:GroupRanges/b:GroupRange/b:GroupRange" />
 <datapoint>
 	<xsl:attribute name="stateBased">
 		<xsl:value-of select="'true'"/>
 	</xsl:attribute>
 	<xsl:attribute name="name">
-	<xsl:for-each select="b:Send">
+		<xsl:for-each select="b:Send">
 			<knxAddress type="group">
  				<xsl:value-of select="$graddress/b:GroupAddress[@Id = current()/@GroupAddressRefId]/@Name"/>
 			</knxAddress>
-  	</xsl:for-each>
-	</xsl:attribute>
+		</xsl:for-each>
+    </xsl:attribute>
 	<xsl:attribute name="mainNumber">
 		<xsl:choose>
 		<xsl:when test="../@DatapointType != ''">
@@ -46,7 +47,7 @@
 			</xsl:choose>
 		</xsl:when>
 		<xsl:otherwise>
-			<xsl:value-of select="$master/@Number"/>
+			<xsl:value-of select="$master[1]/@Number"/>
 		</xsl:otherwise>
 		</xsl:choose>
 	</xsl:attribute>
@@ -63,7 +64,7 @@
 			</xsl:choose>
 		</xsl:when>
 		<xsl:otherwise>
-			<xsl:value-of select="concat($master/@Number,'.',format-number($master/b:DatapointSubtypes/b:DatapointSubtype/@Number, '000'))"/>
+			<xsl:value-of select="concat($master[1]/@Number,'.',format-number($master[1]/b:DatapointSubtypes/b:DatapointSubtype[1]/@Number, '000'))"/>
 		</xsl:otherwise>
 		</xsl:choose>
 	</xsl:attribute>
@@ -77,29 +78,33 @@
 	    </xsl:otherwise>
 	    </xsl:choose>
 	</xsl:attribute>
-
 	<xsl:for-each select="b:Send">
 			<knxAddress type="group">
  				<xsl:value-of select="$graddress/b:GroupAddress[@Id = current()/@GroupAddressRefId]/@Address"/>
 			</knxAddress>
   	</xsl:for-each>
 	<expiration timeout="0"/>
-		<xsl:choose>
-		<xsl:when test="b:Receive">
-			<updatingAddresses>
-				<xsl:for-each select="b:Receive">
-					<knxAddress type="group">
-						<xsl:value-of select="$graddress/b:GroupAddress[@Id = current()/@GroupAddressRefId]/@Address"/>
-					</knxAddress>
-				</xsl:for-each>
-			</updatingAddresses>
-		</xsl:when>
-		<xsl:otherwise>
-			<updatingAddresses>
-				<xsl:text></xsl:text>
-			</updatingAddresses>
-		</xsl:otherwise>
-		</xsl:choose>
+	<location>
+		<xsl:for-each select="b:Send">
+ 			<xsl:value-of select="concat($loc/b:GroupAddress[@Id = current()/@GroupAddressRefId]/../../@Name,'/',$loc/b:GroupAddress[@Id = current()/@GroupAddressRefId]/../@Name)"/>
+		</xsl:for-each>
+	</location>
+	<xsl:choose>
+	<xsl:when test="b:Receive">
+		<updatingAddresses>
+			<xsl:for-each select="b:Receive">
+				<knxAddress type="group">
+					<xsl:value-of select="$graddress/b:GroupAddress[@Id = current()/@GroupAddressRefId]/@Address"/>
+				</knxAddress>
+			</xsl:for-each>
+		</updatingAddresses>
+	</xsl:when>
+	<xsl:otherwise>
+		<updatingAddresses>
+			<xsl:text></xsl:text>
+		</updatingAddresses>
+	</xsl:otherwise>
+	</xsl:choose>
 	<invalidatingAddresses>
 		<xsl:text></xsl:text>
 	</invalidatingAddresses>
