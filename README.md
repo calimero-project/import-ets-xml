@@ -1,42 +1,55 @@
-Import ETS4 XML into Calimero XML
+Import ETS XML into Calimero XML
 =================================
 
-The contained **.xsl** files transform part of ETS4 source XML documents to Calimero XML source documents.
+The contained **.xsl** files transform part of ETS source XML documents to Calimero XML source documents.
 
 Copyright (C) 2010, 2011 Thomas Wimmer<br>
 Copyright (C) 2015, 2016 Boris Malinowsky<br>
 Documentation by Wolfgang Granzer, Boris Malinowsky<br>
 Licensed under the GNU Lesser General Public License (LGPL), version 2.1
 
-Tested with ETS 4.0.3
+Tested with ETS 4.0.3 and ETS 5.x
 
-1. Export ETS4 project<br>
-Save your ETS4 project and export it. To do so, choose the slider _ETS_, click on the button _Projects_, choose your project, and click _Export..._ . You get a file with the extension **.knxproj**, which is a ZIP archive. 
-2. Transform to Calimero XML using XSLT, either by using Maven or do it manually.
+**Required steps**
 
-Using Maven
------------ 
+1. Export your ETS project: choose the slider _ETS_, click on the button _Projects_, select your project, and click _Export..._ . You get a file with the extension **.knxproj** (a ZIP archive). 
+2. Check your ETS version (ETS 4/5)
+3. Transform to Calimero XML using XSLT, either by using Maven or do it manually (see below).
+
+**Know your ETS version!**
+
+Select the correct version inside the calimero `xsl` file (line 5) you want to use. Otherwise the transformed output file will be empty! 
+This is necessary due to ETS `.knxproj` files using versioned XML namespaces: 
+
+* ETS 4 specifies `http://knx.org/xml/project/11` 
+* ETS 5 specifies `http://knx.org/xml/project/13`
+
+By default, the transformation uses the ETS 5 namespace.
+
+
+Import using Maven
+------------------
   * Copy the **.knxproj** archives into _src/main/resources_. 
   * Execute the Maven goal `process-resources`. For example, in the terminal change to the directory where the _pom.xml_ file resides, and type `mvn process-resources`. The output files are written to _target/generated-resources/xml/xslt_.
 
-Manual invocation
------------------
-  * Chose the appropriate XSL style sheet (see below).
-  * Copy the chosen XSL file into the root directory of the extracted ETS4 project.
-  * Invoke an appropriate XSLT tool. Under Linux/OS X you may use `xsltproc`: `xsltproc -o <output_XML_file> <XSL_file> <source_XML_file>`
+Manual import
+-------------
+  * Choose the appropriate XSL style sheet (see below).
+  * Copy the chosen XSL file into the root directory of the extracted ETS project.
+  * Invoke an appropriate XSLT tool. On Linux/MacOS you can use `xsltproc`, i.e., `xsltproc -o <output_XML_file> <XSL_file> <source_XML_file>`. On Microsoft Windows, you may use Saxon (http://saxon.sourceforge.net/).
 
 Choose the appropriate XSL style sheet:
 
   * `ets4_calimero_group.xsl`: Generates for each KNX group address one single datapoint. The resulting file can be loaded by Calimero.
   * `ets_calimero_group_name.xsl`: Generates for each KNX group address one single datapoint where the KNX group address name is used as name for the datapoint. The resulting file can be loaded by Calimero.
-  * `ets4_calimero.xsl`: Generates for each application object one single datapoint. Note that different application objects may have the same group address. Therefore, the output can _not_ be imported into Calimero! However, it can be used for further (manual) processing.
+  * `ets4_calimero.xsl`: Generates for each application object one single datapoint. Note that different application objects may have the same group address. Therefore, the output _cannot_ be imported into Calimero! However, it can be used for further (manual) processing.
 
 
-The source XML file is called _0.xml_ which is contained within the sub directory that begins with a _P_ (e.g., _P-0497_).<br>
-Example invocation: `xsltproc -o calimero.xml ets4_calimero_group_name.xsl P-0497/0.xml`
+The source XML file is called _0.xml_ which is contained within the sub directory that begins with a _P_, e.g., _P-0497_.
 
-Under Microsoft Windows, you may use:
-http://saxon.sourceforge.net/
+**Example invocation** 
+
+`xsltproc -o calimero.xml ets4_calimero_group_name.xsl P-0497/0.xml`
 
 ------------------------------------------------
 Developed at the A-Lab, Automation Systems Group<br>
