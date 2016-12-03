@@ -14,7 +14,7 @@ Tested with ETS 4.0.3 and ETS 5.x
 
 1. Export your ETS project: choose the slider _ETS_, click on the button _Projects_, select your project, and click _Export..._ . You get a file with the extension **.knxproj** (a ZIP archive). 
 2. Check your ETS version (ETS 4/5)
-3. Transform to Calimero XML using XSLT, either by using Maven or do it manually (see below).
+3. Transform to Calimero XML using XSLT, either by using Gradle, Maven, or do it manually (see below).
 
 **Know your ETS version!**
 
@@ -26,6 +26,10 @@ This is necessary due to ETS `.knxproj` files using versioned XML namespaces:
 
 By default, the transformation uses the ETS 5 namespace.
 
+Import using Gradle
+-------------------
+* Copy the **.knxproj** archives into _src/main/resources_.
+* Execute Gradle, i.e., `./gradlew`. The imported _calimero.xml_` file of each archive is written to the corresponding _build/&lt;Project Name&gt;_ folder.
 
 Import using Maven
 ------------------
