@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.calimero</groupId>
 	<artifactId>import-ets4-xml</artifactId>
-	<version>2.3-beta</version>
+	<version>2.3</version>
 	<packaging>pom</packaging>
 	<name>ETS XML Import</name>
 	<description>Transform ETS XML source documents to Calimero XML</description>
