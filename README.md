@@ -44,16 +44,16 @@ Manual import
 
 Choose the appropriate XSL style sheet:
 
-  * `ets4_calimero_group.xsl`: Generates for each KNX group address one single datapoint. The resulting file can be loaded by Calimero.
+  * `ets_calimero_group.xsl`: Generates for each KNX group address one single datapoint. The resulting file can be loaded by Calimero.
   * `ets_calimero_group_name.xsl`: Generates for each KNX group address one single datapoint where the KNX group address name is used as name for the datapoint. The resulting file can be loaded by Calimero.
-  * `ets4_calimero.xsl`: Generates for each application object one single datapoint. Note that different application objects may have the same group address. Therefore, the output _cannot_ be imported into Calimero! However, it can be used for further (manual) processing.
+  * `ets_calimero.xsl`: Generates for each application object one single datapoint. Note that different application objects may have the same group address. Therefore, the output _cannot_ be imported into Calimero! However, it can be used for further (manual) processing.
 
 
 The source XML file is called _0.xml_ which is contained within the sub directory that begins with a _P_, e.g., _P-0497_.
 
 **Example invocation** 
 
-`xsltproc -o calimero.xml ets4_calimero_group_name.xsl P-0497/0.xml`
+`xsltproc -o calimero.xml ets_calimero_group_name.xsl P-0497/0.xml`
 
 ------------------------------------------------
 Developed at the A-Lab, Automation Systems Group<br>

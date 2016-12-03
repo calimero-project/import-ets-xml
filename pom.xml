@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.calimero</groupId>
-	<artifactId>import-ets4-xml</artifactId>
+	<artifactId>import-ets-xml</artifactId>
 	<version>2.3</version>
 	<packaging>pom</packaging>
 	<name>ETS XML Import</name>
@@ -11,9 +11,9 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<scm>
-		<url>https://github.com/calimero-project/import-ets4-xml.git</url>
+		<url>https://github.com/calimero-project/import-ets-xml.git</url>
 	</scm>
-	<url>https://github.com/calimero-project/import-ets4-xml</url>
+	<url>https://github.com/calimero-project/import-ets-xml</url>
 	<licenses>
 		<license>
 			<name>GNU Lesser General Public License (LGPL), version 2.1</name>
@@ -107,7 +107,7 @@
 											regexp="(.*).knxproj" select="\1" override="true" />
 										<unzip src="@{filepath}" dest="src/main/resources/${artifact.id}" />
 										<copy todir="src/main/resources/${artifact.id}">
-											<fileset dir="src/main/xml" includes="ets4_calimero*.xsl" />
+											<fileset dir="src/main/xml" includes="ets_calimero*.xsl" />
 										</copy>
 									</sequential>
 								</for>
@@ -163,7 +163,7 @@
 												<includes>
 													<include>P*/0.xml</include>
 												</includes>
-												<stylesheet>src/main/resources/@item@/ets4_calimero_group_name.xsl</stylesheet>
+												<stylesheet>src/main/resources/@item@/ets_calimero_group_name.xsl</stylesheet>
 											</transformationSet>
 										</transformationSets>
 									</configuration>

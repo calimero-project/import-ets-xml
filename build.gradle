@@ -23,7 +23,7 @@ task unzip(type: Copy) {
 
 def xsltTask(baseDir, buildTask) {
     return tasks.create("xslt${baseDir}", buildTask) {
-        stylesheet "$baseDir/ets4_calimero_group_name.xsl"
+        stylesheet "$baseDir/ets_calimero_group_name.xsl"
 
         input fileTree(dir: "$baseDir", include: '**/P*/0.xml')
         output "$baseDir/calimero.xml"
