@@ -1,0 +1,43 @@
+plugins {
+    id 'com.github.eerohele.saxon-gradle' version '0.2.1'
+}
+
+group = 'com.github.calimero'
+version = '2.3-beta'
+description = "ETS XML Import"
+
+defaultTasks 'importProjects'
+
+task unzip(type: Copy) {
+    fileTree(dir: 'src/main/resources').include('*.knxproj').each { proj ->
+        copy {
+            println "Extract $proj.name"
+            from zipTree("src/main/resources/${proj.name}")
+            from('src/main/xml') { include '*.xsl' }
+
+            def folder = proj.name - '.knxproj'
+            into "${buildDir}/$folder"
+        }
+    }
+}
+
+def xsltTask(baseDir, buildTask) {
+    return tasks.create("xslt${baseDir}", buildTask) {
+        stylesheet "$baseDir/ets4_calimero_group_name.xsl"
+
+        input fileTree(dir: "$baseDir", include: '**/P*/0.xml')
+        output "$baseDir/calimero.xml"
+        
+        // Set XSLT parameters.
+        parameters(debug: true, version: project.version)
+
+        dependsOn buildTask
+    }
+}
+
+task importProjects {
+    new File("${buildDir}").eachDir { d ->
+        xsltTask("$d", com.github.eerohele.SaxonXsltTask).execute() 
+        println "Transform $d"
+    }
+}
