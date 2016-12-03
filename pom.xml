@@ -5,8 +5,8 @@
 	<artifactId>import-ets4-xml</artifactId>
 	<version>2.3-beta</version>
 	<packaging>pom</packaging>
-	<name>ETS4 XML Import </name>
-	<description>Transform ETS4 XML source documents to Calimero XML</description>
+	<name>ETS XML Import</name>
+	<description>Transform ETS XML source documents to Calimero XML</description>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
