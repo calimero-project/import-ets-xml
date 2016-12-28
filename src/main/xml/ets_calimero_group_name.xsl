@@ -81,6 +81,9 @@
 	    </xsl:otherwise>
 	    </xsl:choose>
 	</xsl:attribute>
+	<xsl:if test="string-length(../@Description) > 0">
+	<xsl:comment><xsl:value-of select="../@Description"/></xsl:comment>
+	</xsl:if>
 	<xsl:for-each select="b:Send">
 			<knxAddress type="group">
  				<xsl:value-of select="$graddress/b:GroupAddress[@Id = current()/@GroupAddressRefId]/@Address"/>
