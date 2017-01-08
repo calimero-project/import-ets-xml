@@ -29,7 +29,7 @@ By default, the transformation uses the ETS 5 namespace.
 Import using Gradle
 -------------------
 * Copy the **.knxproj** archives into _src/main/resources_.
-* Execute Gradle, i.e., `./gradlew`. The imported _calimero.xml_` file of each archive is written to the corresponding _build/&lt;Project Name&gt;_ folder.
+* Execute Gradle, i.e., `./gradlew`. The imported _calimero.xml_` file of each archive is written to the corresponding _build/imports/&lt;Project Name&gt;_ folder.
 
 Import using Maven
 ------------------

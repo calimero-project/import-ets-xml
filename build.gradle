@@ -16,7 +16,7 @@ task unzip(type: Copy) {
             from('src/main/xml') { include '*.xsl' }
 
             def folder = proj.name - '.knxproj'
-            into "${buildDir}/$folder"
+            into "${buildDir}/imports/$folder"
         }
     }
 }
@@ -36,8 +36,11 @@ def xsltTask(baseDir, buildTask) {
 }
 
 task importProjects {
-    new File("${buildDir}").eachDir { d ->
-        xsltTask("$d", com.github.eerohele.SaxonXsltTask).execute() 
-        println "Transform $d"
+    def baseDir = new File("${buildDir}/imports")
+    if (baseDir.exists()) {
+        baseDir.eachDir { d ->
+            xsltTask("$d", com.github.eerohele.SaxonXsltTask).execute() 
+            println "Transform $d"
+        }
     }
 }
