@@ -28,12 +28,12 @@ By default, the transformation uses the ETS 5 namespace.
 
 Import using Gradle
 -------------------
-* Copy the **.knxproj** archives into _src/main/resources_.
+* Copy the **.knxproj** archives into _src/main/resources_ (do not extract the archives).
 * Execute Gradle, i.e., `./gradlew`. The imported _calimero.xml_` file of each archive is written to the corresponding _build/imports/&lt;Project Name&gt;_ folder.
 
 Import using Maven
 ------------------
-  * Copy the **.knxproj** archives into _src/main/resources_. 
+  * Copy the **.knxproj** archives into _src/main/resources_ (do not extract the archives). 
   * Execute the Maven goal `process-resources`. For example, in the terminal change to the directory where the _pom.xml_ file resides, and type `mvn process-resources`. The output files are written to _target/generated-resources/xml/xslt_.
 
 Manual import
