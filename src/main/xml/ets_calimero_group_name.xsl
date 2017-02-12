@@ -21,6 +21,18 @@
     </xsl:otherwise>
 </xsl:choose>
 </xsl:variable>
+
+<xsl:variable name="comObjectTableDpt">
+	<xsl:choose>
+		<xsl:when test="starts-with($verz/@DatapointType,'DPST-')">
+			<xsl:value-of select="substring-after($verz/@DatapointType, '-')" />
+		</xsl:when>
+		<xsl:otherwise>
+			<xsl:value-of select="''" />
+		</xsl:otherwise>
+	</xsl:choose>
+</xsl:variable>
+
 <xsl:variable name="master" select="document('knx_master.xml')/b:KNX/b:MasterData/b:DatapointTypes/b:DatapointType[@SizeInBit = $grosse]" />
 <xsl:variable name="master2" select="document('knx_master.xml')/b:KNX/b:MasterData/b:DatapointTypes/b:DatapointType/b:DatapointSubtypes/b:DatapointSubtype[@Id = current()/../@DatapointType]" />
 <xsl:variable name="master3" select="document('knx_master.xml')/b:KNX/b:MasterData/b:DatapointTypes/b:DatapointType[@Id = current()/../@DatapointType]" />
@@ -49,6 +61,9 @@
 			</xsl:otherwise>
 			</xsl:choose>
 		</xsl:when>
+		<xsl:when test="$comObjectTableDpt != ''">
+			<xsl:value-of select="concat('', substring-before($comObjectTableDpt, '-'))"/>
+		</xsl:when>		
 		<xsl:otherwise>
 			<xsl:value-of select="$master[1]/@Number"/>
 		</xsl:otherwise>
@@ -65,6 +80,10 @@
 				<xsl:value-of select="concat($master3/@Number, '.001')"/>
 			</xsl:otherwise>
 			</xsl:choose>
+		</xsl:when>
+		<xsl:when test="$comObjectTableDpt != ''">
+			<xsl:value-of select="concat(substring-before($comObjectTableDpt, '-'), '.', 
+				format-number(xs:decimal(substring-after($comObjectTableDpt, '-')), '000') )"/>
 		</xsl:when>
 		<xsl:otherwise>
 			<xsl:value-of select="concat($master[1]/@Number,'.',format-number($master[1]/b:DatapointSubtypes/b:DatapointSubtype[1]/@Number, '000'))"/>
