@@ -12,14 +12,14 @@
 <xsl:for-each select="b:Connectors">
 <xsl:variable name="verz" select="document(concat(substring(../@RefId,0,7),'/',substring-before(../@RefId, '_O'), '.xml'))/b:KNX/b:ManufacturerData/b:Manufacturer/b:ApplicationPrograms/b:ApplicationProgram/b:Static/b:ComObjectTable/b:ComObject[@Id = ../../b:ComObjectRefs/b:ComObjectRef[@Id = current()/../@RefId]/@RefId]" />
 <xsl:variable name="grosse">
-  <xsl:choose>
+<xsl:choose>
     <xsl:when test="substring-after($verz/@ObjectSize,' ') = 'Bytes'">
-	<xsl:value-of select="xs:decimal(substring-before($verz/@ObjectSize,' '))*8" />
+	    <xsl:value-of select="xs:decimal(substring-before($verz/@ObjectSize,' '))*8" />
     </xsl:when>
     <xsl:otherwise>
-	<xsl:value-of select="substring-before($verz/@ObjectSize,' ')" />
+	    <xsl:value-of select="substring-before($verz/@ObjectSize,' ')" />
     </xsl:otherwise>
-  </xsl:choose>
+</xsl:choose>
 </xsl:variable>
 <xsl:variable name="master" select="document('knx_master.xml')/b:KNX/b:MasterData/b:DatapointTypes/b:DatapointType[@SizeInBit = $grosse]" />
 <xsl:variable name="master2" select="document('knx_master.xml')/b:KNX/b:MasterData/b:DatapointTypes/b:DatapointType/b:DatapointSubtypes/b:DatapointSubtype[@Id = current()/../@DatapointType]" />
@@ -85,9 +85,9 @@
 	<xsl:comment><xsl:value-of select="../@Description"/></xsl:comment>
 	</xsl:if>
 	<xsl:for-each select="b:Send">
-			<knxAddress type="group">
- 				<xsl:value-of select="$graddress/b:GroupAddress[@Id = current()/@GroupAddressRefId]/@Address"/>
-			</knxAddress>
+		<knxAddress type="group">
+ 			<xsl:value-of select="$graddress/b:GroupAddress[@Id = current()/@GroupAddressRefId]/@Address"/>
+		</knxAddress>
   	</xsl:for-each>
 	<expiration timeout="0"/>
 	<location>
