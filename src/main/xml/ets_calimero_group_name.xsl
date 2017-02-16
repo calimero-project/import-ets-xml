@@ -95,8 +95,11 @@
 	    <xsl:when test="../@Priority">
 		<xsl:value-of select="../@Priority"/>
 	    </xsl:when>
-	    <xsl:otherwise>
+	    <xsl:when test="$verz/@Priority">
 	    <xsl:value-of select="$verz/@Priority"/>
+	    </xsl:when>
+	    <xsl:otherwise>
+	    <xsl:text>low</xsl:text>
 	    </xsl:otherwise>
 	    </xsl:choose>
 	</xsl:attribute>
