@@ -1,4 +1,4 @@
-<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs">
+<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:calimero="http://calimero" exclude-result-prefixes="xs">
 <xsl:output method="xml" version="1.0" encoding="utf-8" indent="yes"/>
 
 <!-- For ETS 4 project files, replace the xmlns ending `13` with `11` -->
@@ -63,7 +63,7 @@
 		</xsl:when>
 		<xsl:when test="$comObjectTableDpt != ''">
 			<xsl:value-of select="concat('', substring-before($comObjectTableDpt, '-'))"/>
-		</xsl:when>		
+		</xsl:when>
 		<xsl:otherwise>
 			<xsl:value-of select="$master[1]/@Number"/>
 		</xsl:otherwise>
@@ -82,7 +82,7 @@
 			</xsl:choose>
 		</xsl:when>
 		<xsl:when test="$comObjectTableDpt != ''">
-			<xsl:value-of select="concat(substring-before($comObjectTableDpt, '-'), '.', 
+			<xsl:value-of select="concat(substring-before($comObjectTableDpt, '-'), '.',
 				format-number(xs:decimal(substring-after($comObjectTableDpt, '-')), '000') )"/>
 		</xsl:when>
 		<xsl:otherwise>
@@ -93,13 +93,13 @@
 	<xsl:attribute name="priority">
 	    <xsl:choose>
 	    <xsl:when test="../@Priority">
-		<xsl:value-of select="../@Priority"/>
+			<xsl:value-of select="calimero:mapPriority(../@Priority)"/>
 	    </xsl:when>
 	    <xsl:when test="$verz/@Priority">
-	    <xsl:value-of select="$verz/@Priority"/>
+			<xsl:value-of select="calimero:mapPriority(verz/@Priority)"/>
 	    </xsl:when>
 	    <xsl:otherwise>
-	    <xsl:text>low</xsl:text>
+			<xsl:text>low</xsl:text>
 	    </xsl:otherwise>
 	    </xsl:choose>
 	</xsl:attribute>
@@ -143,4 +143,20 @@
 </datapoints>
 </xsl:for-each>
 </xsl:template>
+
+<xsl:function name="calimero:mapPriority">
+	<xsl:param name="priorityValue"/>
+	<xsl:choose>
+	<xsl:when test="'alert' = lower-case($priorityValue)">
+		<xsl:text>urgent</xsl:text>
+	</xsl:when>
+	<xsl:when test="'high' = lower-case($priorityValue)">
+		<xsl:text>normal</xsl:text>
+	</xsl:when>
+	<xsl:otherwise>
+    	<xsl:text>low</xsl:text>
+    </xsl:otherwise>
+    </xsl:choose>
+</xsl:function>
+
 </xsl:stylesheet>
