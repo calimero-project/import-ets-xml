@@ -1,8 +1,8 @@
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:calimero="http://calimero" exclude-result-prefixes="xs">
 <xsl:output method="xml" version="1.0" encoding="utf-8" indent="yes"/>
 
-<!-- For ETS 4 project files, replace the xmlns ending `13` with `11` -->
-<xsl:template match="/" xmlns:b="http://knx.org/xml/project/13">
+<!-- For ETS 4 project files, replace the xmlns ending (e.g., `14`) with `11` or `12` -->
+<xsl:template match="/" xmlns:b="http://knx.org/xml/project/14">
 
 <xsl:for-each select="b:KNX/b:Project/b:Installations/b:Installation/b:Topology">
 <datapoints>

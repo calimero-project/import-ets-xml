@@ -1,35 +1,35 @@
 Import ETS XML into Calimero XML
 =================================
 
-The contained **.xsl** files transform part of ETS source XML documents to Calimero XML source documents.
+Transform KNX datapoints of ETS source XML documents to Calimero XML source documents.
 
 Copyright (C) 2010, 2011 Thomas Wimmer<br>
-Copyright (C) 2015, 2016 Boris Malinowsky<br>
+Copyright (C) 2015, 2018 Boris Malinowsky<br>
 Documentation by Wolfgang Granzer, Boris Malinowsky<br>
 Licensed under the GNU Lesser General Public License (LGPL), version 2.1
 
-Tested with ETS 4.0.3 and ETS 5.x
+Tested with ETS 4.0.3 and ETS 5.x (latest v5.6.4)
 
 **Required steps**
 
-1. Export your ETS project: choose the slider _ETS_, click on the button _Projects_, select your project, and click _Export..._ . You get a file with the extension **.knxproj** (a ZIP archive). 
+1. Export your ETS project: click on _ETS_, select your project, and click _Export..._ . You get a file with the extension **.knxproj** (a ZIP archive). 
 2. Check your ETS version (ETS 4/5)
 3. Transform to Calimero XML using XSLT, either by using Gradle, Maven, or do it manually (see below).
 
 **Know your ETS version!**
 
-Select the correct version inside the calimero `xsl` file (line 5) you want to use. Otherwise the transformed output file will be empty! 
-This is necessary due to ETS `.knxproj` files using versioned XML namespaces: 
+Select the correct version inside the calimero `xsl` file (line 5) you want to use. If you don't know the version, use _try and error_ with versions 11 to 14.
+With the wrong version, the transformed output file will not contain any datapoints! This adjustment of the version is necessary due to ETS `.knxproj` files using versioned XML namespaces. 
 
-* ETS 4 specifies `http://knx.org/xml/project/11` 
-* ETS 5 specifies `http://knx.org/xml/project/13`
+* ETS 4 uses `http://knx.org/xml/project/11` or `http://knx.org/xml/project/12`
+* ETS 5 uses `http://knx.org/xml/project/13` or `http://knx.org/xml/project/14`
 
-By default, the transformation uses the ETS 5 namespace.
+By default, the transformation assumes a recent ETS 5 with namespace version `14`.
 
 Import using Gradle
 -------------------
 * Copy the **.knxproj** archives into _src/main/resources_ (do not extract the archives).
-* Execute Gradle, i.e., `./gradlew`. The imported _calimero.xml_` file of each archive is written to the corresponding _build/imports/&lt;Project Name&gt;_ folder.
+* On the command line, execute `./gradlew`. The imported _calimero.xml_` file of each archive is written to the corresponding _build/imports/&lt;Project Name&gt;_ folder.
 
 Import using Maven
 ------------------
