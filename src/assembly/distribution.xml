@@ -10,16 +10,47 @@
 	<files>
 		<file>
 			<source>README.md</source>
-			<outputDirectory>/</outputDirectory>
-			<filtered>true</filtered>
+			<outputDirectory></outputDirectory>
 		</file>
 		<file>
 			<source>LICENSE</source>
-			<outputDirectory>/</outputDirectory>
+			<outputDirectory></outputDirectory>
 		</file>
 		<file>
 			<source>${basedir}/src/main/resources/README</source>
-			<outputDirectory>/src/main/resources</outputDirectory>
+			<outputDirectory>src/main/resources</outputDirectory>
+		</file>
+		<file>
+			<source>pom.xml</source>
+			<outputDirectory></outputDirectory>
+		</file>
+		<file>
+			<source>src/assembly/distribution.xml</source>
+			<outputDirectory>src/assembly</outputDirectory>
+		</file>
+		<file>
+			<source>build.gradle</source>
+			<outputDirectory></outputDirectory>
+		</file>
+		<file>
+			<source>gradlew</source>
+			<outputDirectory></outputDirectory>
+		</file>
+		<file>
+			<source>gradlew.bat</source>
+			<outputDirectory></outputDirectory>
+		</file>
+		<file>
+			<source>settings.gradle</source>
+			<outputDirectory></outputDirectory>
+		</file>
+		<file>
+			<source>gradle/wrapper/gradle-wrapper.jar</source>
+			<outputDirectory>gradle/wrapper/</outputDirectory>
+		</file>
+		<file>
+			<source>gradle/wrapper/gradle-wrapper.properties</source>
+			<outputDirectory>gradle/wrapper/</outputDirectory>
 		</file>
 	</files>
 	<fileSets>
