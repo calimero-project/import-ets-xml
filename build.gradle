@@ -3,7 +3,7 @@ plugins {
 }
 
 group = 'com.github.calimero'
-version = '2.4-SNAPSHOT'
+version = '2.4-rc1'
 description = "ETS XML Import"
 
 defaultTasks 'importProjects'
