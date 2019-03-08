@@ -8,7 +8,7 @@ Copyright (C) 2015, 2018 Boris Malinowsky<br>
 Documentation by Wolfgang Granzer, Boris Malinowsky<br>
 Licensed under the GNU Lesser General Public License (LGPL), version 2.1
 
-Tested with ETS 4.0.3 and ETS 5.x (latest v5.6.4)
+Tested with ETS 4.0.3 and ETS 5.x (latest v5.6.4). ETS 5.7 or later is not supported!
 
 **Required steps**
 
@@ -17,6 +17,8 @@ Tested with ETS 4.0.3 and ETS 5.x (latest v5.6.4)
 3. Transform to Calimero XML using XSLT, either by using Gradle, Maven, or do it manually (see below).
 
 **Know your ETS version!**
+
+*Note: namespace version &ge; 20 is not supported.*
 
 Select the correct version inside the calimero `xsl` file (line 5) you want to use. If you don't know the version, use _try and error_ with versions 11 to 14.
 With the wrong version, the transformed output file will not contain any datapoints! This adjustment of the version is necessary due to ETS `.knxproj` files using versioned XML namespaces. 
