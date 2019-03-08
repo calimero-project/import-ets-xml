@@ -1,9 +1,9 @@
 plugins {
-    id 'com.github.eerohele.saxon-gradle' version '0.6.0'
+    id 'com.github.eerohele.saxon-gradle' version '0.7.0'
 }
 
 group = 'com.github.calimero'
-version = '2.4-rc2'
+version = '2.4'
 description = "ETS XML Import"
 
 defaultTasks 'importProjects'
