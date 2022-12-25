@@ -1,14 +1,15 @@
-Import ETS XML into Calimero XML
+[Archived] Import ETS XML into Calimero XML
 =================================
 
-Transform KNX datapoints of ETS source XML documents to Calimero XML source documents.
+*This repository is archived.* Use the [Calimero Tools datapoint importer](https://github.com/calimero-project/calimero-tools) for ETS 5.7 or later.
+
+Transform KNX datapoints of ETS source XML documents to Calimero XML source documents. Tested with ETS 4.0.3 and ETS 5.x (latest v5.6.4). ETS 5.7 or later is not supported!
+
 
 Copyright (C) 2010, 2011 Thomas Wimmer<br>
 Copyright (C) 2015, 2018 Boris Malinowsky<br>
 Documentation by Wolfgang Granzer, Boris Malinowsky<br>
 Licensed under the GNU Lesser General Public License (LGPL), version 2.1
-
-Tested with ETS 4.0.3 and ETS 5.x (latest v5.6.4). ETS 5.7 or later is not supported!
 
 **Required steps**
 
